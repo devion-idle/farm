@@ -9,4 +9,19 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Game::Application.config.secret_key_base = 'f69140f8f14317c9e6f88466cfdec2124a948176514ccb90a2317fdabf8bed20ff615b6bc02d55139d0dfc772434e53caa568d1cf0dde776670694536b14865f'
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in the token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+Game::Application.config.secret_key_base = secure_token
