@@ -4,11 +4,11 @@
 
   money = 50;
 
-  profit = 42.86;
+  profit = 60;
 
-  expenses = 0;
+  expenses = 20;
 
-  net = 0;
+  net = 40;
 
   wage_farmer = 6;
 
@@ -37,8 +37,8 @@
   update_text = function() {
     $('#money').text("$" + (money.toFixed(2)));
     $('#profit').text("$" + (profit.toFixed(2)) + "/min");
-    $('#money').text("$" + (money.toFixed(2)));
-    $('#profit').text("$" + (profit.toFixed(2)) + "/min");
+    $('#expenses').text("$" + (expenses.toFixed(2)) + "/min");
+    $('#net').text("$" + (net.toFixed(2)) + "/min");
     $('.potato #num_farmers').text(potato.num_farmers);
     $('.potato #num_acres').text(potato.num_acres);
     $('.potato #num_harvested').text(Math.floor(potato.num_harvested));
@@ -48,6 +48,7 @@
   };
 
   timer_step = function() {
+    var time;
     potato.num_harvested = Math.min(potato.num_acres, potato.num_harvested + potato.num_farmers * 0.2);
     potato.time_harvest--;
     if (potato.num_harvested >= potato.num_acres && potato.num_drivers > 0) {
@@ -66,7 +67,12 @@
         potato.num_drivers++;
       }
     }
-    profit = potato.val_crop * potato.num_acres * 60 / (potato.time_harvest_max + potato.time_shipping_max);
+    time = Math.max(potato.time_harvest_max, potato.time_shipping_max);
+    profit = potato.val_crop * potato.num_acres * 60 / time;
+    expenses = potato.num_farmers * wage_farmer + potato.num_drivers_max * wage_driver;
+    money -= expenses / 60;
+    expenses += potato.val_seed * potato.num_acres * 60 / time;
+    net = profit - expenses;
     return update_text();
   };
 

@@ -1,8 +1,8 @@
 # Financial Variables
 money = 50
-profit = 42.86
-expenses = 0
-net = 0
+profit = 60
+expenses = 20
+net = 40
 wage_farmer = 6
 wage_driver = 8
 
@@ -25,8 +25,8 @@ update_text = ->
   # Update financial text
   $('#money').text("$#{money.toFixed(2)}")
   $('#profit').text("$#{profit.toFixed(2)}/min")
-  $('#money').text("$#{money.toFixed(2)}")
-  $('#profit').text("$#{profit.toFixed(2)}/min")
+  $('#expenses').text("$#{expenses.toFixed(2)}/min")
+  $('#net').text("$#{net.toFixed(2)}/min")
   
   # Update potato text
   $('.potato #num_farmers').text(potato.num_farmers)
@@ -63,8 +63,12 @@ timer_step = ->
       potato.num_drivers++
   
   # Calculate profit
-  profit = potato.val_crop*potato.num_acres*60/(
-    potato.time_harvest_max + potato.time_shipping_max)
+  time = Math.max(potato.time_harvest_max, potato.time_shipping_max)
+  profit = potato.val_crop*potato.num_acres*60/time
+  expenses = potato.num_farmers*wage_farmer + potato.num_drivers_max*wage_driver
+  money -= expenses/60
+  expenses += potato.val_seed*potato.num_acres*60/time
+  net = profit - expenses
   
   # Update text
   update_text()
