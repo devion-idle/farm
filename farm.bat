@@ -1,1 +1,1 @@
-coffee -j farm.js -cw coffee\farm.coffee
+coffee -j farm.js -cw coffee\crop.coffee coffee\financial.coffee coffee\store.coffee coffee\main.coffee
