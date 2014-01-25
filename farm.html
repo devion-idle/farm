@@ -1,7 +1,10 @@
 <!DOCTYPE HTML>
 <html lang="en-US">
   <head>
-    <link rel="stylesheet" type="text/css" href="farm.css" />
+    <link rel="stylesheet" type="text/css" href="css/960_12_col.css" />
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/text.css" />
+    <link rel="stylesheet" type="text/css" href="css/farm.css" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Farming Empire</title>
     
@@ -14,42 +17,61 @@
   </head>
   
   <body>
-    <h1>Farming Empire</h1>
-    <div id="financial">
-      <h3>Financial</h3>
-      <div class="label">Money:</div>
-      <div id="money">0</div>
-      <div class="label">Profit:</div>
-      <div id="profit">0</div>
-      <div class="label">Expenses:</div>
-      <div id="expenses">0</div>
-      <div class="label">Net:</div>
-      <div id="net">0</div>
-    </div>
-    <div class="potato">
-      <h3>Potato</h3>
-      <div class="label">Farmers:</div>
-      <div id="num_farmers">0</div>
-      <div class="label">Acres:</div>
-      <div id="num_acres">0</div>
-      <div class="label">Harvested:</div>
-      <div id="num_harvested">0</div>
-      <div class="label">Harvest Time:</div>
-      <div id="time_harvest">0</div>
-      <div class="label">Drivers:</div>
-      <div id="num_drivers">0/0</div>
-      <div class="label">Shipping Time:</div>
-      <div id="time_shipping">0</div>
-    </div>
-    <div class="store">
-      <h3>Store</h3>
-      <div id="farmer">
-        <button id="hire_farmer">Hire Farmer</button>
-        <button id="fire_farmer">Fire Farmer</button>
+    <h1 id="title">Farming Empire</h1>
+    <div class="container_12">
+      <div id="info" class="grid_3">
+        <div id="financial">
+          <h4>Financial</h4>
+          <div class="label">Money:</div>
+          <div id="money">0</div>
+          <div class="label">Profit:</div>
+          <div id="profit">0</div>
+          <div class="label">Expenses:</div>
+          <div id="expenses">0</div>
+          <div class="label">Net:</div>
+          <div id="net">0</div>
+        </div>
+        <div class="land">
+          <h4>Land</h4>
+          <div class="label">Land Available: </div>
+          <div id="land_available">0</div>
+          <div class="label">Land Owned: </div>
+          <div id="land_owned">0</div>
+        </div>
       </div>
-      <div id="driver">
-        <button id="hire_driver">Hire Driver</button>
-        <button id="fire_driver">Fire Driver</button>
+      <div id="farm" class="grid_6">
+        <div class="potato">
+          <h4>Potato</h4>
+          <div class="label">Farmers:</div>
+          <div id="num_farmers">0</div>
+          <div class="label">Acres:</div>
+          <div id="num_acres">0</div>
+          <div class="label">Harvested:</div>
+          <div id="num_harvested">0</div>
+          <div class="label">Harvest Time:</div>
+          <div id="time_harvest">0</div>
+          <div class="label">Drivers:</div>
+          <div id="num_drivers">0/0</div>
+          <div class="label">Shipping Time:</div>
+          <div id="time_shipping">0</div>
+        </div>
+      </div>
+      <div id="management" class="grid_3">
+        <div class="store">
+          <h4>Store</h4>
+          <div id="farmer">
+            <button id="hire_farmer">Hire Farmer</button>
+            <button id="fire_farmer">Fire Farmer</button>
+          </div>
+          <div id="driver">
+            <button id="hire_driver">Hire Driver</button>
+            <button id="fire_driver">Fire Driver</button>
+          </div>
+          <div id="tiller">
+            <button id="hire_tiller">Hire Tiller</button>
+            <button id="fire_tiller">Fire Tiller</button>
+          </div>
+        </div>
       </div>
     </div>
     

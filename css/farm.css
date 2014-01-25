@@ -1,0 +1,21 @@
+.label {
+  float: left;
+  padding-right: 5px;
+}
+
+#title {
+  text-align: center;
+  background-color: lightgray;
+}
+
+#info {
+  background-color: lightgray;
+}
+
+#farm {
+  background-color: lightgray;
+}
+
+#management {
+  background-color: lightgray;
+}
