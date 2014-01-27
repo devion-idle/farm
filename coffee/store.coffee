@@ -24,3 +24,15 @@ $('#fire_driver').button().click( ->
   potato.update_crop_timing()
   update_profit()
   update_text())
+  
+# Tiller
+$('#hire_tiller').button().click( -> 
+  num_tillers++
+  update_land_timing()
+  update_profit()
+  update_text())
+$('#fire_tiller').button().click( -> 
+  num_tillers-- if num_tillers > 1
+  update_land_timing()
+  update_profit()
+  update_text())
