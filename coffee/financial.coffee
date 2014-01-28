@@ -1,4 +1,4 @@
-# Financial Variables
+# Financial global variables
 money = 50
 profit = 60
 expenses = 20

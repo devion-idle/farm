@@ -1,15 +1,13 @@
-# Potato Variables
+# Crop class
 class Crop
   constructor: (@name, @val_seed, @val_crop) ->
     @num_farmers = 0
     @num_acres = 0
     @num_harvested = 0
-    @num_drivers = 0
-    @num_drivers_max = 0
     @num_shipping = 0
     @time_harvest = 0
     @time_harvest_max = 0
-    @time_shipping = 0
+
     @time_shipping_max = 0
     
   # Update timing
@@ -26,7 +24,6 @@ class Crop
     $(".#{this.name} #num_harvested").text(Math.floor(this.num_harvested))
     $(".#{this.name} #time_harvest").text(
       "#{Math.ceil(this.time_harvest)} (#{Math.ceil(this.time_harvest_max)}) sec")
-    $(".#{this.name} #num_drivers").text("#{this.num_drivers}/#{this.num_drivers_max}")
     $(".#{this.name} #time_shipping").text(
       "#{Math.ceil(this.time_shipping)} (#{Math.ceil(this.time_shipping_max)}) sec")
       
@@ -38,23 +35,14 @@ class Crop
     this.time_harvest-- if this.time_harvest > 0
     
     # Start crop shipping
-    if this.num_harvested >= this.num_acres and this.num_drivers > 0 and 
-        this.num_shipping < 1
-      this.num_shipping = this.num_harvested
-      this.num_harvested = 0
+    if this.num_harvested >= this.num_acres and num_drivers > 0
+      this.num_shipping += this.num_harvested
       money -= this.val_seed*this.num_acres
-      this.num_drivers--
-      this.time_shipping = this.time_shipping_max
+      num_drivers--
+      new Shipment(this, this.num_harvested, this.time_shipping_max)
+      this.num_harvested = 0
       this.time_harvest = this.time_harvest_max
-    
-    # End crop shipping
-    if this.time_shipping > 0 
-      this.time_shipping--
-      if this.time_shipping <= 0
-        money += this.val_crop*this.num_shipping
-        this.num_shipping = 0
-        this.num_drivers++
-  
+      
   
 # Initialization
 potato = new Crop('potato', 0.50, 5)

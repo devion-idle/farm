@@ -12,16 +12,14 @@ $('#fire_farmer').button().click( ->
   
 # Driver
 $('#hire_driver').button().click( -> 
-  potato.num_drivers++
-  potato.num_drivers_max++
-  potato.update_crop_timing()
+  num_drivers++
+  num_drivers_max++
   update_profit()
   update_text())
 $('#fire_driver').button().click( -> 
-  if potato.num_drivers > 1
-    potato.num_drivers--
-    potato.num_drivers_max--
-  potato.update_crop_timing()
+  if num_drivers > 1
+    num_drivers--
+    num_drivers_max--
   update_profit()
   update_text())
   

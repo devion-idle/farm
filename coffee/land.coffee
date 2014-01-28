@@ -1,3 +1,4 @@
+# Land global variables
 land_available = 0
 land_owned = 10
 land_max = 30
