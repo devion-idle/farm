@@ -9,17 +9,22 @@ time_tilling_increase = 1.2
 # Update land timing
 update_land_timing = ->
   percentage_tilled = time_tilling/time_tilling_max
-  time_tilling_max = Math.round(60*Math.pow(land_owned-9, time_tilling_increase)/num_tillers)
+  time_tilling_max = Math.round(60*Math.pow(time_tilling_increase, land_owned-10)/num_tillers)
   time_tilling = Math.round(time_tilling_max*(percentage_tilled))
   
 # Update land
 update_land = ->
   time_tilling++ if num_tillers > 0
-  if time_tilling > time_tilling_max
-    time_tilling -= time_tilling_max
-    land_owned++
-    land_available++
-    update_land_timing()
+  if time_tilling >= time_tilling_max
+    if land_owned < land_max
+      time_tilling -= time_tilling_max
+      land_owned++
+      land_available++
+      update_land_timing()
+    else
+      time_tilling = time_tilling_max
+      
+    
 
 # Update land text
 update_land_text = ->
