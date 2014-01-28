@@ -20,8 +20,14 @@ update_land = ->
     if land_owned < land_max
       time_tilling -= time_tilling_max
       land_owned++
-      land_available++
+      #land_available++
+      potato.num_acres++
+      num_farmers_limit = Math.floor(land_owned/2)
+      num_drivers_limit = 2*Math.log(land_owned)*Math.LOG10E;
+      update_store()
       update_land_timing()
+      update_profit()
+      update_text()
     else
       time_tilling = time_tilling_max
       

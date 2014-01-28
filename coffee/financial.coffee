@@ -11,7 +11,7 @@ wage_tiller = 6
 update_profit = ->
   time = Math.max(potato.time_harvest_max, potato.time_shipping_max)
   profit = potato.val_crop*potato.num_acres*60/time
-  expenses = potato.num_farmers*wage_farmer + potato.num_drivers_max*wage_driver + 
+  expenses = potato.num_farmers*wage_farmer + num_drivers_max*wage_driver + 
     +num_tillers*wage_tiller + potato.val_seed*potato.num_acres*60/time
   net = profit - expenses
 
