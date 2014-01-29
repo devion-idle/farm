@@ -14,12 +14,14 @@
       this.time_harvest = 0;
       this.time_harvest_max = 0;
       this.time_shipping_max = 0;
+      this.num_drivers_needed = 0;
     }
 
     Crop.prototype.update_crop_timing = function() {
       this.time_harvest_max = this.num_acres / (this.num_farmers * 0.2);
       this.time_harvest = (this.num_acres - this.num_harvested) / (this.num_farmers * 0.2);
-      return this.time_shipping_max = 20 * Math.log(this.num_acres) * Math.LOG10E;
+      this.time_shipping_max = 20 * Math.log(this.num_acres) * Math.LOG10E;
+      return this.num_drivers_needed = this.time_shipping_max / this.time_harvest_max;
     };
 
     Crop.prototype.update_crop_text = function() {
@@ -28,7 +30,8 @@
       $("." + this.name + " #num_harvested").text(Math.floor(this.num_harvested));
       $("." + this.name + " #num_shipping").text(Math.floor(this.num_shipping));
       $("." + this.name + " #time_harvest").text("" + (Math.ceil(this.time_harvest)) + " (" + (Math.ceil(this.time_harvest_max)) + ") sec");
-      return $("." + this.name + " #time_shipping").text("" + (Math.ceil(this.time_shipping_max)) + " sec");
+      $("." + this.name + " #time_shipping").text("" + (Math.ceil(this.time_shipping_max)) + " sec");
+      return $("." + this.name + " #num_drivers_needed").text(Math.ceil(this.num_drivers_needed));
     };
 
     Crop.prototype.update_crop = function() {

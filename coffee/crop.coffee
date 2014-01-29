@@ -8,6 +8,7 @@ class Crop
     @time_harvest = 0
     @time_harvest_max = 0
     @time_shipping_max = 0
+    @num_drivers_needed = 0
     
   # Update timing
   update_crop_timing: ->
@@ -15,6 +16,7 @@ class Crop
     this.time_harvest = (this.num_acres - this.num_harvested)/(
       this.num_farmers*0.2)
     this.time_shipping_max = 20*Math.log(this.num_acres)*Math.LOG10E
+    this.num_drivers_needed = this.time_shipping_max/this.time_harvest_max
       
   # Update this text
   update_crop_text: ->
@@ -26,6 +28,7 @@ class Crop
       "#{Math.ceil(this.time_harvest)} (#{Math.ceil(this.time_harvest_max)}) sec")
     $(".#{this.name} #time_shipping").text(
       "#{Math.ceil(this.time_shipping_max)} sec")
+    $(".#{this.name} #num_drivers_needed").text(Math.ceil(this.num_drivers_needed))
       
   # Update crop, called every 1 second
   update_crop: ->
