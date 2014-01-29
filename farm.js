@@ -201,9 +201,11 @@
 
   update_land_timing = function() {
     var percentage_tilled;
-    percentage_tilled = time_tilling / time_tilling_max;
-    time_tilling_max = Math.round(60 * Math.pow(time_tilling_increase, land_owned - 10) / num_tillers);
-    return time_tilling = Math.round(time_tilling_max * percentage_tilled);
+    if (num_tillers > 0) {
+      percentage_tilled = time_tilling / time_tilling_max;
+      time_tilling_max = Math.round(60 * Math.pow(time_tilling_increase, land_owned - 10) / num_tillers);
+      return time_tilling = Math.round(time_tilling_max * percentage_tilled);
+    }
   };
 
   update_land = function() {
