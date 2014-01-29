@@ -23,14 +23,16 @@ update_land = ->
       land_owned++
       #land_available++
       potato.num_acres++
-      num_farmers_limit = Math.floor(land_owned/2)
-      num_drivers_limit = 2*Math.log(land_owned)*Math.LOG10E;
-      update_store()
-      update_land_timing()
-      update_profit()
-      update_text()
-    else
+    if land_owned >= land_max
+      num_tillers = 0
       time_tilling = time_tilling_max
+    num_farmers_limit = Math.floor(land_owned/2)
+    num_drivers_limit = 2*Math.log(land_owned)*Math.LOG10E;
+    update_land_timing()
+    potato.update_crop_timing()  
+    update_profit()
+    update_store()
+    update_text()
       
     
 

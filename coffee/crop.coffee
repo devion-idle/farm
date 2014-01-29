@@ -42,6 +42,7 @@ class Crop
       this.num_shipping += this.num_harvested
       money -= this.val_seed*this.num_acres
       num_drivers--
+      update_store()
       new Shipment(this, this.num_harvested, this.time_shipping_max)
       this.num_harvested = 0
       this.time_harvest = this.time_harvest_max
@@ -49,7 +50,7 @@ class Crop
   
 # Initialization
 num_farmers_limit = 5
-potato = new Crop('potato', 0.50, 5)
+potato = new Crop('potato', 0.50, 2)
 potato.num_farmers = 1
 potato.num_acres = 10
 potato.num_drivers_max = 1

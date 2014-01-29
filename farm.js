@@ -43,6 +43,7 @@
         this.num_shipping += this.num_harvested;
         money -= this.val_seed * this.num_acres;
         num_drivers--;
+        update_store();
         new Shipment(this, this.num_harvested, this.time_shipping_max);
         this.num_harvested = 0;
         return this.time_harvest = this.time_harvest_max;
@@ -55,7 +56,7 @@
 
   num_farmers_limit = 5;
 
-  potato = new Crop('potato', 0.50, 5);
+  potato = new Crop('potato', 0.50, 2);
 
   potato.num_farmers = 1;
 
@@ -69,11 +70,11 @@
 
   money = 50;
 
-  profit = 60;
+  profit = 0;
 
-  expenses = 20;
+  expenses = 0;
 
-  net = 40;
+  net = 0;
 
   wage_farmer = 6;
 
@@ -82,15 +83,19 @@
   wage_tiller = 6;
 
   update_profit = function() {
-    var time;
-    time = Math.max(potato.time_harvest_max, potato.time_shipping_max);
-    profit = potato.val_crop * potato.num_acres * 60 / time;
-    expenses = potato.num_farmers * wage_farmer + num_drivers_max * wage_driver + +num_tillers * wage_tiller + potato.val_seed * potato.num_acres * 60 / time;
+    var num_potatoes;
+    if (potato.num_drivers_needed <= num_drivers_max) {
+      num_potatoes = potato.num_acres * 60 / potato.time_harvest_max;
+    } else {
+      num_potatoes = potato.num_acres * 60 * num_drivers_max / potato.time_shipping_max;
+    }
+    profit = num_potatoes * potato.val_crop;
+    expenses = potato.num_farmers * wage_farmer + num_drivers_max * wage_driver + +num_tillers * wage_tiller + num_potatoes * potato.val_seed;
     return net = profit - expenses;
   };
 
   update_money = function() {
-    return money -= (potato.num_farmers * wage_farmer + potato.num_drivers_max * wage_driver) / 60;
+    return money -= (potato.num_farmers * wage_farmer + num_drivers_max * wage_driver + num_tillers * wage_tiller) / 60;
   };
 
   update_financial_text = function() {
@@ -149,7 +154,7 @@
   });
 
   update_store = function() {
-    if (potato.num_farmers >= num_farmers_limit) {
+    if (potato.num_farmers >= num_farmers_limit || net <= 0) {
       $('#hire_farmer').button("disable");
     } else {
       $('#hire_farmer').button("enable");
@@ -159,20 +164,25 @@
     } else {
       $('#fire_farmer').button("enable");
     }
-    if (num_drivers_max >= num_drivers_limit) {
+    if (num_drivers_max >= num_drivers_limit || net <= 0) {
       $('#hire_driver').button("disable");
     } else {
       $('#hire_driver').button("enable");
     }
-    if (num_drivers < 2) {
+    if (num_drivers < 1 || num_drivers_max < 2) {
       $('#fire_driver').button("disable");
     } else {
       $('#fire_driver').button("enable");
     }
     if (num_tillers < 1) {
-      return $('#fire_tiller').button("disable");
+      $('#fire_tiller').button("disable");
     } else {
-      return $('#fire_tiller').button("enable");
+      $('#fire_tiller').button("enable");
+    }
+    if (land_owned >= land_max || net < wage_tiller) {
+      return $('#hire_tiller').button("disable");
+    } else {
+      return $('#hire_tiller').button("enable");
     }
   };
 
@@ -180,7 +190,7 @@
 
   $('#hire_driver').button("enable");
 
-  $('#hire_tiller').button("enable");
+  $('#hire_tiller').button("disable");
 
   $('#fire_farmer').button("disable");
 
@@ -221,15 +231,18 @@
         time_tilling -= time_tilling_max;
         land_owned++;
         potato.num_acres++;
-        num_farmers_limit = Math.floor(land_owned / 2);
-        num_drivers_limit = 2 * Math.log(land_owned) * Math.LOG10E;
-        update_store();
-        update_land_timing();
-        update_profit();
-        return update_text();
-      } else {
-        return time_tilling = time_tilling_max;
       }
+      if (land_owned >= land_max) {
+        num_tillers = 0;
+        time_tilling = time_tilling_max;
+      }
+      num_farmers_limit = Math.floor(land_owned / 2);
+      num_drivers_limit = 2 * Math.log(land_owned) * Math.LOG10E;
+      update_land_timing();
+      potato.update_crop_timing();
+      update_profit();
+      update_store();
+      return update_text();
     }
   };
 
@@ -304,6 +317,14 @@
     update_shipments();
     return update_text();
   };
+
+  update_profit();
+
+  update_money();
+
+  update_land();
+
+  update_shipments();
 
   update_text();
 

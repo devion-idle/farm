@@ -14,5 +14,9 @@ timer_step = ->
   update_text()
   
 # Initialization
+update_profit()
+update_money()
+update_land()
+update_shipments()
 update_text()
 $(document).ready( -> setInterval(timer_step, 1000) )

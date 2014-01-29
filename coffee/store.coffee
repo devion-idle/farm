@@ -44,7 +44,7 @@ $('#fire_tiller').button().click( ->
 # Update store
 update_store = ->
   # Farmer
-  if potato.num_farmers >= num_farmers_limit
+  if potato.num_farmers >= num_farmers_limit || net <= 0
     $('#hire_farmer').button("disable")
   else
     $('#hire_farmer').button("enable")
@@ -54,11 +54,11 @@ update_store = ->
     $('#fire_farmer').button("enable")
     
   # Driver
-  if num_drivers_max >= num_drivers_limit
+  if num_drivers_max >= num_drivers_limit || net <= 0
     $('#hire_driver').button("disable") 
   else
     $('#hire_driver').button("enable") 
-  if num_drivers < 2
+  if num_drivers < 1 || num_drivers_max < 2
     $('#fire_driver').button("disable")
   else
     $('#fire_driver').button("enable")
@@ -68,12 +68,16 @@ update_store = ->
     $('#fire_tiller').button("disable") 
   else
     $('#fire_tiller').button("enable")
+  if land_owned >= land_max || net < wage_tiller
+    $('#hire_tiller').button("disable") 
+  else
+    $('#hire_tiller').button("enable")
     
     
 # Initialization
 $('#hire_farmer').button("enable")
 $('#hire_driver').button("enable")
-$('#hire_tiller').button("enable")
+$('#hire_tiller').button("disable")
 $('#fire_farmer').button("disable")
 $('#fire_driver').button("disable")
 $('#fire_tiller').button("disable")
