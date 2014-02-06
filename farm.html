@@ -11,19 +11,18 @@
     <!-- jquery -->
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
-    
-    <!-- live reload auto refresh -->
-    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
   </head>
   
   <body>
-    <h1 id="title">Farming Empire</h1>
+    <h1 id="title_bar">Farming Empire</h1>
     <div class="container_12">
     
       <div id="info" class="grid_3">
-      
+
+        <h4 class="title">Info</h4>
+
         <div id="financial">
-          <h4>Financial</h4>
+          <h6 class="subtitle">Financial</h6>
           <div class="label">Money:</div>
           <div id="money">0</div>
           <div class="label">Profit:</div>
@@ -35,7 +34,7 @@
         </div>
         
         <div class="land">
-          <h4>Land</h4>
+          <h6 class="subtitle">Land</h6>
           <div class="label">Land Available: </div>
           <div id="land_available">0</div>
           <div class="label">Land Owned: </div>
@@ -47,7 +46,7 @@
         </div>
         
         <div class="industry">
-          <h4>Industry</h4>
+          <h6 class="subtitle">Industry</h6>
           <div class="label">Drivers: </div>
           <div id="num_drivers">0</div>
         </div>
@@ -55,9 +54,11 @@
       </div>
       
       <div id="farm" class="grid_6">
-      
+
+        <h4 class="title">Farm</h4>
+
         <div class="potato">
-          <h4>Potato</h4>
+          <h6 class="subtitle">Potato</h6>
           <div class="label">Farmers:</div>
           <div id="num_farmers">0</div>
           <div class="label">Acres:</div>
@@ -77,9 +78,12 @@
       </div>
       
       <div id="management" class="grid_3">
-      
+
+        <h4 class="title">Store</h4>
+
         <div class="store">
-          <h4>Store</h4>
+
+          <h6 class="subtitle">Workers</h6>
           <div id="farmer">
             <button id="hire_farmer">Hire Farmer</button>
             <button id="fire_farmer">Fire Farmer</button>
@@ -92,8 +96,13 @@
             <button id="hire_tiller">Hire Tiller</button>
             <button id="fire_tiller">Fire Tiller</button>
           </div>
+
+          <h6 class="subtitle">Tools</h6>
+
+          <h6 class="subtitle">Upgrades</h6>
+
         </div>
-        
+
       </div>
       
     </div>

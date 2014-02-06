@@ -9,7 +9,7 @@ class Crop
     @time_harvest_max = 0
     @time_shipping_max = 0
     @num_drivers_needed = 0
-    
+
   # Update timing
   update_crop_timing: ->
     this.time_harvest_max = this.num_acres/(this.num_farmers*0.2)

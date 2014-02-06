@@ -3,7 +3,12 @@
   padding-right: 5px;
 }
 
-#title {
+.subtitle {
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+#title_bar {
   text-align: center;
   background-color: lightgray;
 }
@@ -18,4 +23,9 @@
 
 #management {
   background-color: lightgray;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 0px;
 }
