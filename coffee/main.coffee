@@ -3,6 +3,7 @@ update_text = ->
   update_financial_text()
   update_land_text()
   update_industry_text()
+  update_motivate_text()
   potato.update_crop_text()
   
 # Timer function, called every 1 second
@@ -12,6 +13,7 @@ timer_step = ->
   update_land()
   update_shipments()
   update_text()
+  update_motivate()
   
 # Initialization
 update_profit()
