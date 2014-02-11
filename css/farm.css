@@ -5,11 +5,11 @@ body {
 }
 
 div {
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
 h4 {
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
 .label {
@@ -25,10 +25,6 @@ h4 {
 #title_bar {
   text-align: center;
   background-color: lightgray;
-}
-
-.potato {
-  padding: 10px;
 }
 
 .title {
