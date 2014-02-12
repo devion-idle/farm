@@ -29,9 +29,15 @@
       $("." + this.name + " #num_acres").text(this.num_acres);
       $("." + this.name + " #num_harvested").text(Math.floor(this.num_harvested));
       $("." + this.name + " #num_shipping").text(Math.floor(this.num_shipping));
-      $("." + this.name + " #time_harvest").text("" + (Math.ceil(this.time_harvest)) + " (" + (Math.ceil(this.time_harvest_max)) + ") sec");
       $("." + this.name + " #time_shipping").text("" + (Math.ceil(this.time_shipping_max)) + " sec");
-      return $("." + this.name + " #num_drivers_needed").text(Math.ceil(this.num_drivers_needed));
+      $("." + this.name + " #num_drivers_needed").text(Math.ceil(this.num_drivers_needed));
+      $("." + this.name + " #progressbar").progressbar({
+        max: this.time_harvest_max
+      });
+      $("." + this.name + " #progressbar").progressbar({
+        value: this.time_harvest_max - this.time_harvest
+      });
+      return $("." + this.name + " #time_harvest").text("" + (Math.ceil(this.time_harvest)) + " sec");
     };
 
     Crop.prototype.update_crop = function() {
