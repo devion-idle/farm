@@ -16,6 +16,7 @@ timer_step = ->
   update_motivate()
   
 # Initialization
+potato.update_crop_timing()
 update_profit()
 update_money()
 update_land()

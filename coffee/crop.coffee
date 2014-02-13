@@ -56,4 +56,3 @@ potato.num_farmers = 1
 potato.num_acres = 10
 potato.num_drivers_max = 1
 potato.num_drivers = 1
-potato.update_crop_timing()
