@@ -104,12 +104,12 @@ update_store = ->
     $('#fire_tiller').button("disable") 
   else
     $('#fire_tiller').button("enable")
-  if land_owned >= land_max || net < wage_tiller
+  if land_owned >= land_max || net < wage
     $('#hire_tiller').button("disable") 
   else
     $('#hire_tiller').button("enable")
     
-    
+
 # Initialization
 $('#hire_farmer').button("enable")
 $('#hire_driver').button("enable")

@@ -258,7 +258,7 @@
     } else {
       $('#fire_tiller').button("enable");
     }
-    if (land_owned >= land_max || net < wage_tiller) {
+    if (land_owned >= land_max || net < wage) {
       return $('#hire_tiller').button("disable");
     } else {
       return $('#hire_tiller').button("enable");
