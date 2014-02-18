@@ -150,6 +150,7 @@
 
   $('#hire_farmer').button().click(function() {
     potato.num_farmers++;
+    wage += 0.01;
     potato.update_crop_timing();
     update_profit();
     update_store();
@@ -158,6 +159,7 @@
 
   $('#fire_farmer').button().click(function() {
     potato.num_farmers--;
+    wage -= 0.01;
     potato.update_crop_timing();
     update_profit();
     update_store();
@@ -167,6 +169,7 @@
   $('#hire_driver').button().click(function() {
     num_drivers++;
     num_drivers_max++;
+    wage += 0.01;
     update_profit();
     update_store();
     return update_text();
@@ -175,6 +178,7 @@
   $('#fire_driver').button().click(function() {
     num_drivers--;
     num_drivers_max--;
+    wage -= 0.01;
     update_profit();
     update_store();
     return update_text();
@@ -182,6 +186,7 @@
 
   $('#hire_tiller').button().click(function() {
     num_tillers++;
+    wage += 0.01;
     update_land_timing();
     update_profit();
     update_store();
@@ -190,6 +195,7 @@
 
   $('#fire_tiller').button().click(function() {
     num_tillers--;
+    wage -= 0.01;
     update_land_timing();
     update_profit();
     update_store();
@@ -233,6 +239,7 @@
   });
 
   update_store = function() {
+    $('#wage').text("Worker Salary: $" + (wage.toFixed(2)));
     if (potato.num_farmers >= num_farmers_limit || net <= 0) {
       $('#hire_farmer').button("disable");
     } else {

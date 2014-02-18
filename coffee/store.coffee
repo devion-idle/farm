@@ -3,13 +3,15 @@
 # Farmer Button callbacks
 $('#hire_farmer').button().click( -> 
   potato.num_farmers++
+  wage += 0.01
   potato.update_crop_timing()
   update_profit()
   update_store()
   update_text()
 )
 $('#fire_farmer').button().click( -> 
-  potato.num_farmers-- 
+  potato.num_farmers--
+  wage -= 0.01
   potato.update_crop_timing()
   update_profit()
   update_store()
@@ -19,14 +21,16 @@ $('#fire_farmer').button().click( ->
 # Driver Button callbacks
 $('#hire_driver').button().click( -> 
   num_drivers++
-  num_drivers_max++  
+  num_drivers_max++
+  wage += 0.01
   update_profit()
   update_store()
   update_text()
 )
 $('#fire_driver').button().click( -> 
   num_drivers--
-  num_drivers_max--  
+  num_drivers_max--
+  wage -= 0.01
   update_profit()
   update_store()
   update_text()
@@ -35,6 +39,7 @@ $('#fire_driver').button().click( ->
 # Tiller Button callbacks
 $('#hire_tiller').button().click( -> 
   num_tillers++
+  wage += 0.01
   update_land_timing()
   update_profit()
   update_store()
@@ -42,6 +47,7 @@ $('#hire_tiller').button().click( ->
 )
 $('#fire_tiller').button().click( -> 
   num_tillers--
+  wage -= 0.01
   update_land_timing()
   update_profit()
   update_store()
@@ -79,6 +85,9 @@ $('#cultivator').button().click( ->
 
 # Update store
 update_store = ->
+  # Update wage
+  $('#wage').text("Worker Salary: $#{wage.toFixed(2)}")
+
   # Farmer
   if potato.num_farmers >= num_farmers_limit || net <= 0
     $('#hire_farmer').button("disable")
